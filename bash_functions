@@ -1,5 +1,6 @@
 SITES_ENABLED=/etc/nginx/sites-enabled
 SITES_AVAILABLE=/etc/nginx/sites-available
+PROJECTS_DIR=/Users/jose/Projects
 
 function sites {
   if [ -z "$1" ]; then
@@ -40,4 +41,18 @@ function sites {
   fi
 }
 
+p() {
+  PROJECT_NAME="$1";
+  cd "$PROJECTS_DIR/$PROJECT_NAME";
+}
+
+_p_complete() {
+  local cur opts
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts="$(ls $PROJECTS_DIR)"
+
+  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+  return 0
+}
+complete -F _p_complete p
 # vim: set ft=sh:
