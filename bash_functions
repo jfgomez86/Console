@@ -5,7 +5,7 @@ PROJECTS_DIR=/Users/jose/Projects
 function sites {
   if [ -z "$1" ]; then
     echo
-    echo "Options: sites [enable|disable] [sitename]"
+    echo "Options: sites [enable|disable|edit] [sitename]"
     echo
     echo "    Enabled sites:"
     echo
@@ -33,8 +33,8 @@ function sites {
         fi
       ;;
       "edit")
-        if [ -f $SITES_ENABLED/$2 ] ; then
-          sudo vim $SITES_ENABLED/$2
+        if [ -f $SITES_AVAILABLE/$2 ] ; then
+          sudo vim $SITES_AVAILABLE/$2
         fi
       ;;
     esac
