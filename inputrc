@@ -3,3 +3,4 @@
 "":history-search-backward
 "":history-search-forward
 set completion-ignore-case on
+set -o vi
