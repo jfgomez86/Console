@@ -2,7 +2,7 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]] ; then
 
-  PATH=$PATH:/usr/local/bin:/opt/local/bin:/usr/local/mysql/bin/:/usr/local/pgsql/bin/:~/local/bin/
+  PATH=/usr/local/sbin:/usr/local/bin:/opt/local/bin:/usr/local/mysql/bin/:/usr/local/pgsql/bin/:~/local/bin/:$PATH
 
   export PGDATA=~/Library/PostgreSQL/Data/
   export HISTCONTROL=ignoreboth
@@ -31,9 +31,10 @@ if [[ -n "$PS1" ]] ; then
   # make less more friendly for non-text input files, see lesspipe(1)
   [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-  export PS1="\[\e[00;32m\]┌─[\[\e[0m\]\u\[\e[00;32m\]][\[\e[0m\]\[\e[0;34m\]\w\[\e[0m\]\[\e[00;32m\]] \[\e]1;\]\W\[\a\]\n\[\e[00;32m\]└─╼\[\e[0m\] "
-  xkcd(){ local f=$(curl -s http://xkcd.com/);open $(echo "$f"|grep -Po '(?<=")http://imgs.xkcd.com/comics/[^"]+(png|jpg)');echo "$f"|awk '/<img src="http:\/\/imgs\.xkcd\.com\/comics\/.*?" title=.*/{gsub(/^.*title=.|".*?$/,"");print}';}
-  xkcdrandom(){ local f=$(wget -q http://dynamic.xkcd.com/comic/random/ -O -);open $(echo "$f"|grep -Po '(?<=")http://imgs.xkcd.com/comics/[^"]+(png|jpg)');echo "$f"|awk '/<img src="http:\/\/imgs\.xkcd\.com\/comics\/.*?" title=.*/{gsub(/^.*title=.|".*?$/,"");print}';}
+  #export PS1='\[\033k\033\\\]\[\e[00;32m\][\[\e[0m\]\[\e[0m\]\[\e[0;34m\]\w\[\e[0m\]\[\e[00;32m\]]\[\e[0m\]\[\e]1;\]\W\[\a\]\[\e[0m\] \$ '
+  export PS1='\[\033k\033\\\][\[\e[0;34m\]\w\e[0m\]]\$ '
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -6,6 +6,7 @@ alias valias="vim ~/.bash_aliases"
 alias vfunctions="vim ~/.bash_functions"
 alias vgitignore='vim ~/.gitignore'
 alias sb="source ~/.bashrc"
+alias v="vim --remote"
 
 # Extended Commands Aliases
 #################################
@@ -14,6 +15,9 @@ alias tree='tree -L 2'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias startpg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias stoppg='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias clearusb='find . -iname ".*" -type f -exec rm {} \;'
 
 # Scripts and application aliases
 #################################
@@ -29,6 +33,8 @@ alias ...='pushd ../..'
 alias ....='pushd ../../..'
 alias rdbs='rake db:drop && rake db:create && rake db:migrate'
 alias t='term'
+alias postgres.start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias postgres.stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 # Bash Directory Bookmarks (http://www.huyng.com/archives/492)
 #################################
@@ -45,5 +51,7 @@ alias mdump='alias|grep -e "alias g[0-9]"|grep -v "alias m" > ~/.bookmarks'
 alias lma='alias | grep -e "alias g[0-9]"|grep -v "alias m"|sed "s/alias //"'
 touch ~/.bookmarks
 source ~/.bookmarks
+
+[[ -x /Applications/MacVim.app/Contents/MacOS/Vim ]] && alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 
 # vim: set ft:sh:

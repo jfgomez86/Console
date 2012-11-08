@@ -55,4 +55,12 @@ _p_complete() {
   return 0
 }
 complete -F _p_complete p
+
+downloadicons() {
+  URL="$1";
+  for image in `curl $URL | grep icon-image | sed "s/.*src=\'\(.*\)\'.*/\1/g"` ; do
+    curl -O $image ;
+  done
+}
+
 # vim: set ft=sh:
