@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gallois"
+ZSH_THEME="clean"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -76,5 +76,6 @@ launch () {
 }
 
 compctl -K _projects_list launch
-PATH=/usr/local/bin:$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+PATH=/usr/local/heroku/bin:/usr/local/bin:$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+
+source /Users/jfgomez86/.rvm/scripts/rvm
