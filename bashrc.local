@@ -7,5 +7,5 @@ shopt -s histappend
 
 # Start tmux by default if possible
 if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux -2
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux new-session -A -s main
 fi
