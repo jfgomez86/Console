@@ -1,11 +1,20 @@
-# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+# Path to your oh-my-zsh configuration.
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="clean"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+# POWERLEVEL9K_STATUS_VERBOSE=false
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
+# POWERLEVEL9K_SHOW_CHANGESET=true
+# POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -40,42 +49,37 @@ ZSH_THEME="clean"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rvm)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
 # Zsh-compatible aliases :D
 source ~/.bash_aliases
 
 # My Projects shortcut function:
-PROJECTS_DIR="/Users/jfgomez86/Projects"
+PROJECTS_DIR="/Users/jose/Projects"
 p() {
   PROJECT_NAME="$1";
   cd "$PROJECTS_DIR/$PROJECT_NAME";
 }
 
 _projects_list() {
-  reply=($(ls $PROJECTS_DIR))
+  reply=($(ls -tCd $PROJECTS_DIR/*/** | sed -e "s-$PROJECTS_DIR/--"))
 }
 
 _heroku_apps() {
   reply=($(heroku list | awk {'print $1'}))
 }
 
+# Setup Completion Functions
 compctl -K _projects_list p
 compctl -x 's[--app],c[-1,--app]' -K _heroku_apps -- heroku
 
-export EDITOR='mvim -f'
+# Set mvim as the default editor
+export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
 
-launch () {
-  project="$1"
-  /usr/bin/osascript ~/.console/apple_scripts/launch_project.scpt $project
-}
+# Customize to your needs...
+export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/heroku/bin
 
-compctl -K _projects_list launch
-PATH=/usr/local/heroku/bin:/usr/local/bin:$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source /Users/jfgomez86/.rvm/scripts/rvm

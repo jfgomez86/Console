@@ -1,6 +1,6 @@
 SITES_ENABLED=/etc/nginx/sites-enabled
 SITES_AVAILABLE=/etc/nginx/sites-available
-PROJECTS_DIR=/Users/jfgomez86/Projects
+PROJECTS_DIR=/Users/jose/Projects
 
 function sites {
   if [ -z "$1" ]; then
